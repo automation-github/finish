@@ -11,13 +11,7 @@ pipeline {
       }
     }
 
-    stage('print_target_cluster') {
-      agent any
-      steps {
-        sh '''echo $target_cluster'''
 
-      }
-    }
 
   }
 }
