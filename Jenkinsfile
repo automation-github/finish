@@ -7,11 +7,17 @@ pipeline {
     stage('finish') {
       agent any
       steps {
-        build (job: "finish", propagate: false)
+        build (job: 'finish_job', propagate: false)
       }
     }
 
+    stage('print_target_cluster') {
+      agent any
+      steps {
+        sh '''echo $target_cluster'''
 
+      }
+    }
 
   }
 }
