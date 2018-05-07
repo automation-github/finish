@@ -4,14 +4,20 @@ pipeline {
     target_cluster = '10.65.182.142'
   }
   stages {
-    stage('finish') {
-      agent any
-      steps {
-//        build (job: 'finish_job', propagate: false)
+    try {
+      stage('finish') {
+        agent any
+        steps {
+  //        build (job: 'finish_job', propagate: false)
+  //        build job: 'finish_job'
         sh '''set +e
 
-ssh root@$target_cluster -t "pytest -s /var/Nightswatch/jenkins_pipeline_tests/finish.py" '''
+  ssh root@$target_cluster -t "pytest -s /var/Nightswatch/jenkins_pipeline_tests/finish.py" '''
+        currentBuild.result = 'SUCCESS'
+        }
       }
+    } catch(e) {
+      currentBuild.result = "FAILURE"
     }
 
     stage('print_target_cluster') {
