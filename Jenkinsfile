@@ -10,7 +10,7 @@ pipeline {
 //        build (job: 'finish_job', propagate: false)
         sh '''set +e
 
-ssh root@$target_cluster -t "pytest -s /var/Nightswatch/jenkins_pipeline_tests/start.py" '''
+ssh root@$target_cluster -t "pytest -s /var/Nightswatch/jenkins_pipeline_tests/finish.py" '''
       }
     }
 
